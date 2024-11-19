@@ -9,6 +9,23 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    # Service containers to run with `container-job`
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres:17-alpine
+        # Provide the password for postgres
+        env:
+          POSTGRES_PASSWORD: roalqufn-12
+          POSTGRES_USER: root
+          POSTGRES_DB: simple_bank
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - uses: actions/checkout@v4
 
@@ -16,6 +33,9 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version: "1.23.3"
+
+      - name: Run migration
+        run: make migrateup
 
       - name: Test
         run: make test

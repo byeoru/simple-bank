@@ -4,9 +4,9 @@ import (
 	"database/sql"
 	"log"
 	"os"
-	"simple_bank/util"
 	"testing"
 
+	"github.com/byeoru/simple-bank/util"
 	_ "github.com/lib/pq"
 )
 

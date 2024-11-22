@@ -3,10 +3,10 @@ package main
 import (
 	"database/sql"
 	"log"
-	"simple_bank/api"
-	db "simple_bank/db/sqlc"
-	"simple_bank/util"
 
+	"github.com/byeoru/simple-bank/api"
+	db "github.com/byeoru/simple-bank/db/sqlc"
+	"github.com/byeoru/simple-bank/util"
 	_ "github.com/lib/pq"
 )
 

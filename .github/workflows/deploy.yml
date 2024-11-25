@@ -9,12 +9,17 @@ jobs:
     name: Build image
     runs-on: ubuntu-latest
 
+    permissions:
+      id-token: write
+      contents: read
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4 # More information on this action can be found below in the 'AWS Credentials' section
+
         with:
           role-to-assume: arn:aws:iam::195275643292:role/aws-service-role/replication.ecr.amazonaws.com/AWSServiceRoleForECRReplication
           aws-region: ap-northeast-2
